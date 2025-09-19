@@ -9,22 +9,31 @@
 ## 🚀 一键安装
 
 ### Windows用户
-```bash
-# 下载并运行安装脚本
-curl -o install.bat https://raw.githubusercontent.com/您的用户名/ssh-terminal-tool/main/install.bat
-install.bat
+
+#### 方法1: PowerShell（推荐）
+```powershell
+# 下载并运行PowerShell安装脚本
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/kuku0799/ssh-terminal-tool/main/install.ps1" -OutFile "install.ps1"
+.\install.ps1
+```
+
+#### 方法2: 批处理文件
+```cmd
+# 下载并运行批处理安装脚本
+curl -o install.bat https://raw.githubusercontent.com/kuku0799/ssh-terminal-tool/main/install.bat
+.\install.bat
 ```
 
 ### Linux/Mac用户
 ```bash
 # 下载并运行安装脚本
-curl -sSL https://raw.githubusercontent.com/您的用户名/ssh-terminal-tool/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/kuku0799/ssh-terminal-tool/main/install.sh | bash
 ```
 
 ### 手动安装
 ```bash
 # 克隆项目
-git clone https://github.com/您的用户名/ssh-terminal-tool.git
+git clone https://github.com/kuku0799/ssh-terminal-tool.git
 cd ssh-terminal-tool
 
 # 启动Docker容器

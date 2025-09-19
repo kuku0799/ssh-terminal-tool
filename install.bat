@@ -25,7 +25,7 @@ echo ✅ Docker正在运行
 
 REM 克隆项目
 echo 📥 下载项目...
-git clone https://github.com/您的用户名/ssh-terminal-tool.git
+git clone https://github.com/kuku0799/ssh-terminal-tool.git
 cd ssh-terminal-tool
 
 REM 创建必要目录
