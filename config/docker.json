@@ -1,0 +1,58 @@
+{
+  "server": {
+    "port": 3000,
+    "host": "0.0.0.0",
+    "cors": {
+      "origin": "*",
+      "credentials": true
+    }
+  },
+  "ssh": {
+    "defaultPort": 22,
+    "timeout": 30000,
+    "keepalive": true,
+    "retries": 3
+  },
+  "rdp": {
+    "defaultPort": 3389,
+    "timeout": 30000,
+    "width": 1024,
+    "height": 768,
+    "colorDepth": 24
+  },
+  "monitoring": {
+    "interval": 5000,
+    "enabled": true,
+    "metrics": {
+      "cpu": true,
+      "memory": true,
+      "disk": true,
+      "network": true,
+      "processes": true
+    }
+  },
+  "sftp": {
+    "timeout": 30000,
+    "retries": 3,
+    "chunkSize": 32768
+  },
+  "logging": {
+    "level": "info",
+    "file": "/app/logs/app.log",
+    "maxSize": "10MB",
+    "maxFiles": 5
+  },
+  "security": {
+    "maxConnections": 100,
+    "rateLimit": {
+      "windowMs": 60000,
+      "max": 100
+    }
+  },
+  "docker": {
+    "enabled": true,
+    "dataPath": "/app/data",
+    "configPath": "/app/config",
+    "logsPath": "/app/logs"
+  }
+}

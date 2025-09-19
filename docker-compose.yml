@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  ssh-tool:
+    build: .
+    container_name: ssh-terminal-tool
+    ports:
+      - "3000:3000"    # Web界面端口
+      - "8080:8080"    # API端口
+      - "5900:5900"    # VNC端口（可选）
+    volumes:
+      # 数据持久化
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+      # SSH密钥挂载
+      - ~/.ssh:/home/sshuser/.ssh:ro
+      # 可选：挂载主机目录到容器
+      - ./mount:/app/mount
+    environment:
+      - NODE_ENV=production
+      - DISPLAY=:99
+      - ENABLE_VNC=false
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    networks:
+      - ssh-network
+    # 如果需要访问主机网络
+    # network_mode: host
+    # 如果需要特权模式（某些功能需要）
+    # privileged: true
+    # 安全配置
+    security_opt:
+      - no-new-privileges:true
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+
+  # 可选：添加数据库服务
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: ssh-tool-redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - ssh-network
+
+  # 可选：添加监控服务
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   container_name: ssh-tool-prometheus
+  #   ports:
+  #     - "9090:9090"
+  #   volumes:
+  #     - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+  #   restart: unless-stopped
+  #   networks:
+  #     - ssh-network
+
+networks:
+  ssh-network:
+    driver: bridge
+
+volumes:
+  # redis-data:
+  #   driver: local
